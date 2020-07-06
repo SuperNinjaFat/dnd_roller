@@ -8,7 +8,7 @@
 #include "rotaryswitch.h"
 //#include "SD_MMC.h"
 
-const int pinLed = 33;
+const int pinLed = BUILTIN_LED;
 const int pinButtonRoll = 12;
 const int pinSwitchSides = 13;
 const int pinSwitchNum = 16;
@@ -30,6 +30,7 @@ void setup() {
   Serial.begin(9600);
 //  SD_MMC.begin("/sdcard", true);
   connectWIFI();
+  flash();
 }
 
 void loop() {
