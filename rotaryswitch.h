@@ -3,10 +3,10 @@
 // by Paul Lindberg
 
 //set constants
-int P_1 = 4;//2
-int P_2 = 2;//3
-int P_3 = 14;//4
-int P_4 = 15;//5
+int P_1 = 4;
+int P_2 = 2;
+int P_3 = 14;
+int P_4 = 15;
 
 //set variables
 int switchState1 = 0;

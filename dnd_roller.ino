@@ -1,36 +1,34 @@
 #include "arduino_secrets.h"
 /*
-  Discord DnD Roller for ESP32
+  Discord DnD Roller for ESP8266
   Code Adapted from:
   https://technoreview85.com/how-to-program-esp-32-cam-using-arduino-uno-board/
 */
 #include "discord.h"
 #include "rotaryswitch.h"
-//#include "SD_MMC.h"
 
-const int pinLed = BUILTIN_LED;
-const int pinButtonRoll = 12;
-const int pinSwitchSides = 13;
-const int pinSwitchNum = 16;
-const int pinRotary_1 = 4;
-const int pinRotary_2 = 2;
-const int pinRotary_3 = 14;
-const int pinRotary_4 = 15;
+//const int pinLed = LED_BUILTIN;
+const int pinButtonRoll = 12;//D0;//12;
+const int pinSwitchSides = 13;//D2;//13;
+const int pinSwitchNum = 16;//D3;//16;
+const int pinRotary_1 = 4;//D6;//4;
+const int pinRotary_2 = 2;//D7;//2;
+const int pinRotary_3 = 14;//D5;//14;
+const int pinRotary_4 = 15;//D8;//15;
 
 int stateButton = 0;
 int num = 1;
 int sides = 20;
 
 void setup() {
-  pinMode(pinButtonRoll, INPUT); // initialize pin 12 as input
-  pinMode(pinSwitchSides, INPUT); // initialize pin 14 as input
-  pinMode(pinSwitchNum, INPUT); // initialize pin 15 as input
-  pinMode(pinLed, OUTPUT); // initialize pin 4 as output
+  pinMode(pinButtonRoll, INPUT);
+  pinMode(pinSwitchSides, INPUT);
+  pinMode(pinSwitchNum, INPUT);
+//  pinMode(pinLed, OUTPUT);
   rotaryModes(pinRotary_1, pinRotary_2, pinRotary_3, pinRotary_4);
   Serial.begin(9600);
-//  SD_MMC.begin("/sdcard", true);
   connectWIFI();
-  flash();
+//  flash();
 }
 
 void loop() {
@@ -75,9 +73,10 @@ int rotaryConvert() {
   }
 }
 
-//activate the flashlight temporarily
-void flash() {
-  digitalWrite(pinLed, 1);
-  delay(100);
-  digitalWrite(pinLed, 0);
-}
+////activate the flashlight temporarily
+//void flash() {
+//  digitalWrite(pinLed, LOW);
+//  delay(300);
+//  digitalWrite(pinLed, HIGH);
+//  delay(300);
+//}
