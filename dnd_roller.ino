@@ -8,13 +8,13 @@
 #include "rotaryswitch.h"
 
 //const int pinLed = LED_BUILTIN;
-const int pinButtonRoll = 12;//D0;//12;
-const int pinSwitchSides = 13;//D2;//13;
-const int pinSwitchNum = 16;//D3;//16;
-const int pinRotary_1 = 4;//D6;//4;
-const int pinRotary_2 = 2;//D7;//2;
-const int pinRotary_3 = 14;//D5;//14;
-const int pinRotary_4 = 15;//D8;//15;
+const int pinButtonRoll = D0; 
+const int pinSwitchSides = D2;//3;
+const int pinSwitchNum = D1;//1;
+const int pinRotary_1 = D6;
+const int pinRotary_2 = D7;
+const int pinRotary_3 = D5;
+const int pinRotary_4 = D8;
 
 int stateButton = 0;
 int num = 1;
@@ -34,17 +34,22 @@ void setup() {
 void loop() {
   stateButton = digitalRead(pinButtonRoll);
   num = switchRead(pinSwitchNum, 2, 1);
+  switchRead(pinSwitchSides, 0, 0);
   sides = rotaryConvert();//switchRead(pinSwitchSides, 8, 20);
-  if (stateButton == HIGH) { //check button press state, if high
+  if (stateButton == LOW) { //check button press state, if high
     sendDiscord("!" + String(num) + "d" + String(sides));//# @Bart"); //send message
 //    flash(); //blink led
+    delay(400);
   }
+  delay(300);
 }
 
 int switchRead(int pin, int x, int y) {
-  if (digitalRead(pin) == HIGH) {
+  if (digitalRead(pin) == LOW) {
+    Serial.println("switchpin" + String(pin) + " = LOW");
     return x;
   }
+  Serial.println("switchpin" + String(pin) + " = HIGH");
   return y;
 }
 
